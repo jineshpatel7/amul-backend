@@ -1,0 +1,16 @@
+name: API Health & Notification Check
+
+on:
+  schedule:
+    # This runs the job every 10 minutes
+    - cron: '*/10 * * * *'
+  workflow_dispatch:
+  # Allows you to run this workflow manually from the Actions tab
+
+jobs:
+  send_requests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send GET health check request
+        run: curl --fail --request GET 'https://amul-backend-b014.onrender.com/health'
+
